@@ -45,10 +45,10 @@ public class UserService {
 
    public UserResponseDTO updateUser(UUID id , UserRequestDTO userRequestDTO) {
 
-       UserEntity entity = userRepository.findById(id)
+       UserEntity userEntity = userRepository.findById(id)
                .orElseThrow(() -> new RuntimeException("User não econtrado"));
 
-       UserEntity userEntity = new UserEntity();
+       userEntity = new UserEntity();
        userEntity.setName(userRequestDTO.name());
        userEntity.setEmail(userRequestDTO.email());
        userEntity.setPassword(passwordEncoder.encode(userRequestDTO.password()));
@@ -56,4 +56,11 @@ public class UserService {
        UserEntity saved = userRepository.save(userEntity);
        return UserResponseDTO.fromEntity(saved);
    }
+
+   public  void deleteUser(UUID id ){
+        if(!userRepository.existsById(id)){
+            throw  new RuntimeException("User not found");
+        }
+   }
+
 }
