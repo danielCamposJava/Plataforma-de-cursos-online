@@ -76,6 +76,4 @@ public class UserEntity {
         this.country = country;
     }
 
-
-
 }

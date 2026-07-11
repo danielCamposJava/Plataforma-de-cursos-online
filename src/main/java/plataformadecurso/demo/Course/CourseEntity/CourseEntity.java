@@ -7,7 +7,7 @@ import lombok.Setter;
 import plataformadecurso.demo.User.UserEntity.UserEntity;
 
 import java.util.List;
-import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table( name = "course")
@@ -17,7 +17,7 @@ public class CourseEntity {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;

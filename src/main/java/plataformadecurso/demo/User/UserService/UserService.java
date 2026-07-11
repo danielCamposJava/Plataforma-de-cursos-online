@@ -45,10 +45,10 @@ public class UserService {
 
    public UserResponseDTO updateUser(UUID id , UserRequestDTO userRequestDTO) {
 
-       UserEntity userEntity = userRepository.findById(id)
+       userRepository.findById(id)
                .orElseThrow(() -> new RuntimeException("User não econtrado"));
 
-       userEntity = new UserEntity();
+       UserEntity userEntity = new UserEntity();
        userEntity.setName(userRequestDTO.name());
        userEntity.setEmail(userRequestDTO.email());
        userEntity.setPassword(passwordEncoder.encode(userRequestDTO.password()));
