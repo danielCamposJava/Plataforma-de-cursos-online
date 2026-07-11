@@ -6,4 +6,6 @@ public record CourseRequestDTO (
          String description,
          String image,
          String actor
-){ }
+){
+
+}
