@@ -1,4 +1,4 @@
-package plataformadecurso.demo.src.Course.Coursecontroller;
+package plataformadecurso.demo.Course.Coursecontroller;
 
 public class CourseController {
 }

@@ -1,4 +1,6 @@
 package plataformadecurso.demo.src.Course.DTO;
 
-public class CourseRequestDTO {
+public record CourseRequestDTO (){
+
+
 }

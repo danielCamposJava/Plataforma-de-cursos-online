@@ -2,7 +2,7 @@ package plataformadecurso.demo.User.DTO;
 
 
 public record UserRequestDTO(
-         String name ,
+        String name ,
         String email,
         String password,
         String phone,

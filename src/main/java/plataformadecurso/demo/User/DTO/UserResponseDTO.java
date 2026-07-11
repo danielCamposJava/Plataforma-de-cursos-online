@@ -1,9 +1,7 @@
 package plataformadecurso.demo.User.DTO;
-
 import plataformadecurso.demo.User.UserEntity.UserEntity;
-
 import java.util.UUID;
-//test
+
 public record UserResponseDTO(
         UUID id,
         String name,

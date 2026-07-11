@@ -59,7 +59,6 @@ public class UserEntity {
                         String state , String country, String zip
 
     ){
-
         this.name = name;
         this.email = email;
         this.password = password;
@@ -67,8 +66,6 @@ public class UserEntity {
         this.city = city;
         this.address = address;
         this.country = country;
-
-
     }
 
 
