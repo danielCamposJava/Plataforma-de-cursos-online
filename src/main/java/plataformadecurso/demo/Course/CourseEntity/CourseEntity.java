@@ -4,6 +4,10 @@ package plataformadecurso.demo.Course.CourseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import plataformadecurso.demo.User.UserEntity.UserEntity;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table( name = "course")
@@ -26,6 +30,9 @@ public class CourseEntity {
 
     @Column(nullable = false)
     private String actor ;
+
+    @ManyToMany(mappedBy = "course")
+    private List<UserEntity> users;
 
     public  CourseEntity(){}
 

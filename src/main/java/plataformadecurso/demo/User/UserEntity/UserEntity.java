@@ -6,7 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import plataformadecurso.demo.Course.CourseEntity.CourseEntity;
+import plataformadecurso.demo.Enrollments.EnrollmentsEntity.Enrollment;
+
 import javax.management.relation.Role;
+import java.util.List;
 import java.util.UUID;
 
 // test de commit
@@ -52,6 +56,10 @@ public class UserEntity {
 
     @Column(nullable = false)
     private String zip;
+
+    @OneToMany(mappedBy = "User")
+    private List<Enrollment> enrollments;
+
     public  UserEntity(){}
 
     public  UserEntity( String  name, String email , String password, Role role,
