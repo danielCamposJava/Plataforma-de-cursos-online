@@ -16,9 +16,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CourseService {
     private final CourseRepository courseRepository;
-
-
-
     public List<CourseResponseDTO> getAllCourses(){
         return courseRepository.findAll().stream().map(
                 CourseResponseDTO ::fromEntity
