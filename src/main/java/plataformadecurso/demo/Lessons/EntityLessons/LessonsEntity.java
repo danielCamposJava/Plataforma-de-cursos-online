@@ -1,4 +1,4 @@
-package plataformadecurso.demo.Lessons.EntitiLessons;
+package plataformadecurso.demo.Lessons.EntityLessons;
 
 
 import jakarta.persistence.*;

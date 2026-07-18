@@ -4,10 +4,10 @@ package plataformadecurso.demo.Module.ModuleEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import plataformadecurso.demo.Course.CourseEntity.CourseEntity;
-
+import plataformadecurso.demo.Lessons.EntityLessons.LessonsEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table(name ="modules")
@@ -16,7 +16,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class ModuleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -28,6 +27,6 @@ public class ModuleEntity {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<LessonEntity> lessons = new ArrayList<>();
+    private List<LessonsEntity> lessons = new ArrayList<>();
 
 }
