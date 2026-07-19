@@ -7,6 +7,7 @@ import plataformadecurso.demo.Course.CourseEntity.CourseEntity;
 import plataformadecurso.demo.Lessons.EntityLessons.LessonsEntity;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity
@@ -20,13 +21,20 @@ public class ModuleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @JoinColumn( name = "course")
+    private UUID id;
+
+    private String  title;
+
+    private Integer  orderIndex;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
     private CourseEntity course;
 
-    @OneToMany(
-            mappedBy = "module",
+    @OneToMany(mappedBy = "module",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+            orphanRemoval = true)
+
     private List<LessonsEntity> lessons = new ArrayList<>();
 
 }
