@@ -4,6 +4,7 @@ package plataformadecurso.demo.Lessons.LessonsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import plataformadecurso.demo.Lessons.DTO.LessonsRequestDTO;
 import plataformadecurso.demo.Lessons.DTO.LessonsResponseDTO;
 import plataformadecurso.demo.Lessons.EntityLessons.LessonsEntity;
 import plataformadecurso.demo.Lessons.LessonsRepository.LessonsRepository;
@@ -24,7 +25,7 @@ public class LessonsSerice {
         ).toList();
     }
 
-    public LessonsResponseDTO createLessons(LessonsResponseDTO lessonsResponseDTO){
+    public LessonsResponseDTO createLessons(LessonsRequestDTO lessonsResponseDTO){
 
         LessonsEntity lessonsEntity = new LessonsEntity();
 
