@@ -39,7 +39,7 @@ public class LessonsSerice {
         return  LessonsResponseDTO.fromEntity(savedLessonsEntity);
     }
 
-    public LessonsResponseDTO updateLessons( UUID id ,LessonsResponseDTO lessonsResponseDTO){
+    public LessonsResponseDTO updateLessons(UUID id ,LessonsRequestDTO lessonsResponseDTO){
 
         lessonsRepository.findById(id).orElseThrow(
                 () -> new RuntimeException( "lessons with id " + id + "not found")

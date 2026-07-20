@@ -1,6 +1,5 @@
 package plataformadecurso.demo.Lessons.LessonController;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +8,6 @@ import plataformadecurso.demo.Course.DTO.CourseResponseDTO;
 import plataformadecurso.demo.Lessons.DTO.LessonsRequestDTO;
 import plataformadecurso.demo.Lessons.DTO.LessonsResponseDTO;
 import plataformadecurso.demo.Lessons.LessonsService.LessonsSerice;
-
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
@@ -34,8 +32,18 @@ public class LessonsController {
     }
 
     @PostMapping("/{id}")
-    public  ResponseEntity<CourseResponseDTO> createCourse(@PathVariable UUID id, @RequestBody CourseRequestDTO courseRequestDTO){
-        lessonsSerice.deleteLessons(UUID.randomUUID());
-        return ResponseEntity.noContent().build();
+    public  ResponseEntity<LessonsResponseDTO> updateLessons(
+            @PathVariable UUID uuid,
+            @RequestBody LessonsRequestDTO requestDTO
+    ){
+        return  ResponseEntity.ok(lessonsSerice.updateLessons(uuid, requestDTO));
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteLessons(@PathVariable UUID UUID){
+        lessonsSerice.deleteLessons(UUID);
+        return  ResponseEntity.ok().build();
+    }
+
+
 }
