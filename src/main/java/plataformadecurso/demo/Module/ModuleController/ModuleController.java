@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import plataformadecurso.demo.Module.DTO.ModuleResponseDTO;
 import plataformadecurso.demo.Module.DTO.RequestModuloDTO;
 import plataformadecurso.demo.Module.ModuleServie.ModuleService;
+
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +23,7 @@ public class ModuleController {
             @RequestBody ModuleResponseDTO moduleResponseDTO
     ){
         ModuleResponseDTO moduleResponseDTO1 = moduleService.CreateModule(moduleResponseDTO);
-        return ResponseEntity.ok(moduleResponseDTO1);
+        return (ResponseEntity<ModuleResponseDTO>) ResponseEntity.created(URI.create("/module/"+ moduleResponseDTO1));
     }
 
     @GetMapping
