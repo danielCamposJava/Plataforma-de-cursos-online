@@ -15,7 +15,7 @@ import java.util.UUID;
 @Transactional
 @RequiredArgsConstructor
 public class ModuleService {
-//test
+
     private  final ModuleRepository moduleRepository;
 
     public List<ModuleResponseDTO>findAll(){
@@ -24,7 +24,7 @@ public class ModuleService {
         ).toList();
     }
 
-    public ModuleResponseDTO CreateModule(RequestModuloDTO requestModuloDTO){
+    public ModuleResponseDTO CreateModule(@org.jetbrains.annotations.UnknownNullability ModuleResponseDTO requestModuloDTO){
         ModuleEntity moduleEntity = new ModuleEntity();
 
         moduleEntity.setId(UUID.randomUUID());
