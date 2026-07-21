@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import plataformadecurso.demo.Enrollaments.Enum.EnrollmentStatus;
 import plataformadecurso.demo.User.UserEntity.UserEntity;
 import plataformadecurso.demo.Course.CourseEntity.CourseEntity;
 
@@ -23,6 +24,10 @@ public class EnrollmentEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EnrollmentStatus status;
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
