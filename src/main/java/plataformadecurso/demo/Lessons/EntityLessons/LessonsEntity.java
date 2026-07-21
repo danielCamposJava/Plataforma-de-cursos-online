@@ -3,6 +3,7 @@ package plataformadecurso.demo.Lessons.EntityLessons;
 
 import jakarta.persistence.*;
 import lombok.*;
+import plataformadecurso.demo.Module.ModuleEntity.ModuleEntity;
 
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 
 public class LessonsEntity {
 
@@ -31,6 +33,6 @@ public class LessonsEntity {
     private Integer orderIndex;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "module")
-    private Module module;
+    @JoinColumn(name = "module_id")
+    private ModuleEntity module;
 }

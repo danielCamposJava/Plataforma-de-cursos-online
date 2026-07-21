@@ -24,7 +24,7 @@ public class ModuleService {
         ).toList();
     }
 
-    public ModuleResponseDTO CreateModule(@org.jetbrains.annotations.UnknownNullability ModuleResponseDTO requestModuloDTO){
+    public ModuleResponseDTO CreateModule( ModuleResponseDTO requestModuloDTO){
         ModuleEntity moduleEntity = new ModuleEntity();
 
         moduleEntity.setId(UUID.randomUUID());
