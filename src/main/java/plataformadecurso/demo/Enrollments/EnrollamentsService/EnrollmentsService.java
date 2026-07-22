@@ -24,7 +24,7 @@ public class EnrollmentsService{
         ).toList();
     }
 
-    public ResponseEnrollmentsDTO  createEnrollments(RequesEnrollmentsDTO enrollmentsDTO) {
+    public ResponseEnrollmentsDTO  createEnrollments(ResponseEnrollmentsDTO enrollmentsDTO) {
 
         EnrollmentEntity enrollmentEntity = new EnrollmentEntity();
         enrollmentEntity.setCourse(enrollmentEntity.getCourse());
