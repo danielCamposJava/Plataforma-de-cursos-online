@@ -1,4 +1,4 @@
-package plataformadecurso.demo.Enrollaments.Enum;
+package plataformadecurso.demo.Enrollments.Enum;
 
 public enum EnrollmentStatus {
 

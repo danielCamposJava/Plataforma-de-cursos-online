@@ -1,10 +1,10 @@
-package plataformadecurso.demo.Enrollaments.EnrollamentsEntity;
+package plataformadecurso.demo.Enrollments.EnrollamentsEntity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import plataformadecurso.demo.Enrollaments.Enum.EnrollmentStatus;
+import plataformadecurso.demo.Enrollments.Enum.EnrollmentStatus;
 import plataformadecurso.demo.User.UserEntity.UserEntity;
 import plataformadecurso.demo.Course.CourseEntity.CourseEntity;
 

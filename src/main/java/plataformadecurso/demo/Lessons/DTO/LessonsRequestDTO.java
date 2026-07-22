@@ -8,4 +8,5 @@ public record LessonsRequestDTO(
         Integer durationMinutes,
         Integer orderIndex
 ) {
+
 }
