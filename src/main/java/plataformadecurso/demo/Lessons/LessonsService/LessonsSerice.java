@@ -56,9 +56,11 @@ public class LessonsSerice {
     }
 
     public void deleteLessons(UUID id){
-        lessonsRepository.findById(id).orElseThrow(
-                () -> new RuntimeException( "Lessons with id " + id + "not found")
 
-        );
+        if(!lessonsRepository.existsById(id)){
+            throw new RuntimeException( "lessons with id " + id + " not found");
+        }
+
+        lessonsRepository.deleteById(id);
     }
 }

@@ -8,18 +8,16 @@ import plataformadecurso.demo.User.DTO.UserRequestDTO;
 import plataformadecurso.demo.User.DTO.UserResponseDTO;
 import plataformadecurso.demo.User.UserEntity.UserEntity;
 import plataformadecurso.demo.User.UserRepository.UserRepository;
-
 import java.util.List;
 import java.util.UUID;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class UserService {
 
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
 
     public UserResponseDTO createUser(UserRequestDTO dto){
 
@@ -36,13 +34,10 @@ public class UserService {
                 passwordEncoder.encode(dto.password())
         );
 
-
         return UserResponseDTO.fromEntity(
                 userRepository.save(user)
         );
     }
-
-
 
     public List<UserResponseDTO> findAllUser(){
 
@@ -52,10 +47,7 @@ public class UserService {
                 .toList();
     }
 
-
-
     public UserResponseDTO updateUser(UUID id, UserRequestDTO dto){
-
 
         UserEntity user = userRepository.findById(id)
                 .orElseThrow(
@@ -71,14 +63,11 @@ public class UserService {
             );
         }
 
-
         return UserResponseDTO.fromEntity(
                 userRepository.save(user)
         );
 
     }
-
-
 
     public void deleteUser(UUID id){
 

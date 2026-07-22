@@ -19,18 +19,22 @@ public class ModuleService {
     private  final ModuleRepository moduleRepository;
 
     public List<ModuleResponseDTO>findAll(){
+
         return moduleRepository.findAll().stream().map(
                 ModuleResponseDTO::fromEntity
         ).toList();
+
     }
 
     public ModuleResponseDTO CreateModule( ModuleResponseDTO requestModuloDTO){
+
         ModuleEntity moduleEntity = new ModuleEntity();
 
         moduleEntity.setId(UUID.randomUUID());
         moduleEntity.setTitle(requestModuloDTO.title());
         moduleEntity.setOrderIndex(requestModuloDTO.orderIndex());
         ModuleEntity savedModuleEntity = moduleRepository.save(moduleEntity);
+
         return ModuleResponseDTO.fromEntity(savedModuleEntity);
     }
 
@@ -39,15 +43,23 @@ public class ModuleService {
         moduleRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Module with id" + id + " not found")
         );
+
         ModuleEntity moduleEntity = moduleRepository.findById(id).orElseThrow();
         moduleEntity.setTitle(requestModuloDTO.title());
         moduleEntity.setOrderIndex(requestModuloDTO.orderIndex());
+
         moduleRepository.save(moduleEntity);
+
         return ModuleResponseDTO.fromEntity(moduleEntity);
 
     }
 
-    public  void DeleteModule(UUID id){
+    public  void DeleteModule(UUID id ){
+
+        if(!moduleRepository.existsById(id)){
+            throw new RuntimeException("Module with id" + id + " not found");
+        }
+
         moduleRepository.deleteById(id);
-    }
+     }
 }
