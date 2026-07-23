@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import plataformadecurso.demo.Enrollments.DTO.RequesEnrollmentsDTO;
 import plataformadecurso.demo.Enrollments.DTO.ResponseEnrollmentsDTO;
 import plataformadecurso.demo.Enrollments.EnrollamentsService.EnrollmentsService;
-
 import java.util.List;
 import java.util.UUID;
 

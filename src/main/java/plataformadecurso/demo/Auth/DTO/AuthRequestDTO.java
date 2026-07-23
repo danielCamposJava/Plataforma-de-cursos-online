@@ -1,4 +1,4 @@
-package plataformadecurso.demo.src.Auth.DTO;
+package plataformadecurso.demo.Auth.DTO;
 
 public class AuthRequestDTO {
 }
