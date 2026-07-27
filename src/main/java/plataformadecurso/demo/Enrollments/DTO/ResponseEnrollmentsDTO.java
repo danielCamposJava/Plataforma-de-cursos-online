@@ -8,7 +8,6 @@ public record ResponseEnrollmentsDTO(
         LocalDateTime enrolledAt,
         Double progress
 ) {
-
     public static ResponseEnrollmentsDTO fromEntity(EnrollmentEntity enrollmentEntity) {
         return new ResponseEnrollmentsDTO(
                 enrollmentEntity.getCourse().getName(),

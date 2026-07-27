@@ -17,7 +17,6 @@ public class AuthService {
     private  final PasswordEncoder encoder;
     private final JwtService jwtService;
 
-
     public AuthResponseDTO login(AuthRequestDTO dto) {
 
         UserEntity user = userRepository.findByEmail(dto.email());
