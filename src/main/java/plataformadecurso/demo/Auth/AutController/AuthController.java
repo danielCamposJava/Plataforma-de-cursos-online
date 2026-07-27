@@ -1,6 +1,5 @@
 package plataformadecurso.demo.Auth.AutController;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import plataformadecurso.demo.Auth.AuthService.AuthService;
 import plataformadecurso.demo.Auth.DTO.AuthRequestDTO;
 import plataformadecurso.demo.Auth.DTO.AuthResponseDTO;
-import plataformadecurso.demo.Security.JwtService;
 
 @RestController
 @RequestMapping("/Auth")

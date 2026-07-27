@@ -14,26 +14,24 @@ import plataformadecurso.demo.User.UserRepository.UserRepository;
 public class AuthService {
 
     private final UserRepository userRepository;
-    private  final PasswordEncoder encoder;
+    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
     public AuthResponseDTO login(AuthRequestDTO dto) {
 
-        UserEntity user = userRepository.findByEmail(dto.email());
+        UserEntity user = userRepository.findByEmail(dto.email())
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado"));
 
-        if (!encoder.matches(
+        if (!passwordEncoder.matches(
                 dto.password(),
                 user.getPassword()
-
         )) {
             throw new RuntimeException("Senha inválida");
         }
 
-        String token = jwtService.generateToken(String.valueOf(user));
+        String token = jwtService.generateToken(user.getEmail());
 
         return new AuthResponseDTO(token);
-
     }
-
-
 }

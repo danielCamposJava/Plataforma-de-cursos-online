@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class JwTSecurityConfig {
 
     // 1. Injeta o seu JwtFilter que ajustamos anteriormente
     private final JwtFilter jwtFilter;
