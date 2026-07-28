@@ -8,6 +8,6 @@ public record UserRequestDTO(
         String phone,
         String address,
         String city,
-        String  country,
+        String country,
         String zip
 ) { }

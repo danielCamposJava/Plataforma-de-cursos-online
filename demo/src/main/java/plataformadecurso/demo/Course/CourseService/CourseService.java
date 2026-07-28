@@ -16,9 +16,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CourseService {
     private final CourseRepository courseRepository;
-
-
-
     public List<CourseResponseDTO> getAllCourses(){
         return courseRepository.findAll().stream().map(
                 CourseResponseDTO ::fromEntity
@@ -57,8 +54,11 @@ public class CourseService {
     }
 
     public  void deleteCourses( UUID id ){
-        courseRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Course with id: " + id + " not found")
-        );
+
+        if(!courseRepository.existsById(id)){
+            throw new RuntimeException("Course with id: " + id + " not found");
+        }
+
+        courseRepository.deleteById(id);
     }
 }

@@ -1,4 +1,11 @@
-package plataformadecurso.demo.src.Course.DTO;
+package plataformadecurso.demo.Course.DTO;
 
-public class CourseRequestDTO {
+
+public record CourseRequestDTO (
+         String name,
+         String description,
+         String image,
+         String actor
+){
+
 }

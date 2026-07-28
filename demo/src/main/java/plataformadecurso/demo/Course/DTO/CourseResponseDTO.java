@@ -7,7 +7,7 @@ import java.util.UUID;
 public record CourseResponseDTO(
         UUID  id,
         String name ,
-        String descriptio,
+        String description,
         String image,
         String actor
 ) {

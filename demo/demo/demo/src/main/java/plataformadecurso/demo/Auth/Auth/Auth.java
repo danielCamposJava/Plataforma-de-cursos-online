@@ -1,4 +1,4 @@
-package plataformadecurso.demo.src.Auth.Auth;
+package plataformadecurso.demo.Auth.Auth;
 
 public class Auth {
 }

@@ -8,7 +8,6 @@ import plataformadecurso.demo.User.DTO.UserRequestDTO;
 import plataformadecurso.demo.User.DTO.UserResponseDTO;
 import plataformadecurso.demo.User.UserEntity.UserEntity;
 import plataformadecurso.demo.User.UserRepository.UserRepository;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -20,47 +19,84 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserResponseDTO createUser(UserRequestDTO userRequestDTO) {
+    public UserResponseDTO createUser(UserRequestDTO dto) {
 
-        if( userRepository.existsById(UUID.fromString(userRequestDTO.email()))){
-             throw  new RuntimeException("Email ja existente");
-         }
+        if (userRepository.existsByEmail(dto.email())) {
+            throw new RuntimeException("Email já cadastrado");
+        }
 
-         UserEntity userEntity = new UserEntity();
+        UserEntity user = new UserEntity();
 
-         userEntity.setName(userRequestDTO.name());
-         userEntity.setEmail(userRequestDTO.email());
-         userEntity.setPassword(passwordEncoder.encode(userRequestDTO.password()));
+        user.setName(dto.name());
+        user.setEmail(dto.email());
+        user.setPassword(passwordEncoder.encode(dto.password()));
 
-         UserEntity saved = userRepository.save(userEntity);
-         return  UserResponseDTO.fromEntity(saved);
+       // user.setRole(dto.role());
+        user.setPhone(dto.phone());
+        user.setAddress(dto.address());
+        user.setCity(dto.city());
+        //user.setState(dto.state());
+        user.setCountry(dto.country());
+        user.setZip(dto.zip());
 
+        UserEntity savedUser = userRepository.save(user);
+
+        return UserResponseDTO.fromEntity(savedUser);
     }
 
-   public List<UserResponseDTO> findAllUser(){
-        return  userRepository.findAll().stream().map(
-                UserResponseDTO ::fromEntity
-        ).toList();
-   }
+    public List<UserResponseDTO> findAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(UserResponseDTO::fromEntity)
+                .toList();
+    }
 
-   public UserResponseDTO updateUser(UUID id , UserRequestDTO userRequestDTO) {
+    public UserResponseDTO findById(UUID id) {
 
-       userRepository.findById(id)
-               .orElseThrow(() -> new RuntimeException("User não econtrado"));
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado"));
 
-       UserEntity userEntity = new UserEntity();
-       userEntity.setName(userRequestDTO.name());
-       userEntity.setEmail(userRequestDTO.email());
-       userEntity.setPassword(passwordEncoder.encode(userRequestDTO.password()));
+        return UserResponseDTO.fromEntity(user);
+    }
 
-       UserEntity saved = userRepository.save(userEntity);
-       return UserResponseDTO.fromEntity(saved);
-   }
+    public UserResponseDTO updateUser(UUID id, UserRequestDTO dto) {
 
-   public  void deleteUser(UUID id ){
-        if(!userRepository.existsById(id)){
-            throw  new RuntimeException("User not found");
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado"));
+
+        if (!user.getEmail().equals(dto.email())
+                && userRepository.existsByEmail(dto.email())) {
+            throw new RuntimeException("Email já cadastrado");
         }
-   }
 
+        user.setName(dto.name());
+        user.setEmail(dto.email());
+
+        // user.setRole(dto.role());
+        user.setPhone(dto.phone());
+        user.setAddress(dto.address());
+        user.setCity(dto.city());
+        //user.setState(dto.state());
+        user.setCountry(dto.country());
+        user.setZip(dto.zip());
+
+        if (dto.password() != null && !dto.password().isBlank()) {
+            user.setPassword(passwordEncoder.encode(dto.password()));
+        }
+
+        UserEntity updatedUser = userRepository.save(user);
+
+        return UserResponseDTO.fromEntity(updatedUser);
+    }
+
+    public void deleteUser(UUID id) {
+
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado"));
+
+        userRepository.delete(user);
+    }
 }

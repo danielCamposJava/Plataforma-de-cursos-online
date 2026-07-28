@@ -20,7 +20,6 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<CourseResponseDTO> createCourse(@RequestBody CourseRequestDTO courseRequestDTO){
 
-
         CourseResponseDTO  courseResponseDTO = courseService.createCourses(courseRequestDTO);
         return ResponseEntity.created( URI.create("/courses/"+ courseResponseDTO.id())).body(courseResponseDTO);
     }
