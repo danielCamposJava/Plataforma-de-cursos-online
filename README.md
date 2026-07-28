@@ -67,6 +67,85 @@ USERS
 │                    │
 │                    └── LESSONS
 ```
+````text
++-------------+
+|    USERS    |
++-------------+
+| id          |
+| name        |
+| email       |
+| password    |
+| role        |
++-------------+
+       |
+       | 1
+       |
+       | N
++-------------+
+| ENROLLMENTS |
++-------------+
+| id          |
+| user_id     |
+| course_id   |
+| progress    |
+| status      |
++-------------+
+       |
+       | N
+       |
+       | 1
++-------------+
+|   COURSES   |
++-------------+
+| id          |
+| name        |
+| description |
+| author      |
++-------------+
+       |
+       | 1
+       |
+       | N
++-------------+
+|   MODULES   |
++-------------+
+| id          |
+| title       |
+| course_id   |
++-------------+
+       |
+       | 1
+       |
+       | N
++-------------+
+|   LESSONS   |
++-------------+
+| id          |
+| title       |
+| video_url   |
+| duration    |
++-------------+
+`````
+
+````text
+
+UserEntity
+      |
+      | OneToMany
+      ↓
+EnrollmentEntity
+      ↑
+      | ManyToOne
+CourseEntity
+      |
+      | OneToMany
+      ↓
+ModuleEntity
+      |
+      | OneToMany
+      ↓
+LessonEntity
+````
 
 ## Estrutura das Entidades
 
