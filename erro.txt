@@ -1,0 +1,13 @@
+> Task :clean
+
+> Task :compileJava
+
+> Task :processResources
+> Task :classes
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/maria/OneDrive/%C3%81rea%20de%20Trabalho/Nova%20pasta%20(4)/demo/build/reports/problems/problems-report.html
+5 actionable tasks: 5 executed
