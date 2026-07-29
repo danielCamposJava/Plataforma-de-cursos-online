@@ -20,7 +20,7 @@ repositories {
 dependencies {
 
 	// Spring
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
@@ -33,12 +33,17 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	// Banco H2
+	// Banco
 	runtimeOnly 'com.h2database:h2'
+	// runtimeOnly 'org.postgresql:postgresql'
 
 	// Testes
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+
+	// Mockito
+	testImplementation 'org.mockito:mockito-core:5.18.0'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.18.0'
 }
 
 tasks.named('test') {

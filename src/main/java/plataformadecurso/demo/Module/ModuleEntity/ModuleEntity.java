@@ -35,6 +35,7 @@ public class ModuleEntity {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @Builder.Default
     private List<LessonsEntity> lessons = new ArrayList<>();
 }
 
