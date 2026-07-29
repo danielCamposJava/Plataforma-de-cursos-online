@@ -19,32 +19,36 @@ public class ModuleController {
     private final ModuleService moduleService;
 
     @PostMapping
-    public ResponseEntity<ModuleResponseDTO>createModule(
-            @RequestBody ModuleResponseDTO moduleResponseDTO
-    ){
-        ModuleResponseDTO moduleResponseDTO1 = moduleService.CreateModule(moduleResponseDTO);
-        return (ResponseEntity<ModuleResponseDTO>) ResponseEntity.created(URI.create("/module/"+ moduleResponseDTO1));
+    public ResponseEntity<ModuleResponseDTO> createModule(
+            @RequestBody RequestModuloDTO requestDTO
+    ) {
+        ModuleResponseDTO response = moduleService.CreateModule(requestDTO);
+
+        return ResponseEntity
+                .created(URI.create("/module/" + response.id()))
+                .body(response);
     }
 
     @GetMapping
-    public ResponseEntity<List<ModuleResponseDTO>> getAllModules(){
-        return  ResponseEntity.ok( moduleService.findAll());
+    public ResponseEntity<List<ModuleResponseDTO>> getAllModules() {
+        return ResponseEntity.ok(moduleService.findAll());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ModuleResponseDTO>updateModule(
-            @PathVariable UUID uuid,
+    public ResponseEntity<ModuleResponseDTO> updateModule(
+            @PathVariable UUID id,
             @RequestBody RequestModuloDTO requestDTO
-            ){
-         return  ResponseEntity.ok(moduleService.UpdateModule(uuid,requestDTO));
+    ) {
+        return ResponseEntity.ok(
+                moduleService.UpdateModule(id, requestDTO)
+        );
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void>deleteModule(
-            @PathVariable UUID uuid
-    ){
-        moduleService.DeleteModule(uuid);
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteModule(
+            @PathVariable UUID id
+    ) {
+        moduleService.DeleteModule(id);
+        return ResponseEntity.noContent().build();
     }
-
 }

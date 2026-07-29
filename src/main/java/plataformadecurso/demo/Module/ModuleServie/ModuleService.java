@@ -26,7 +26,7 @@ public class ModuleService {
 
     }
 
-    public ModuleResponseDTO CreateModule( ModuleResponseDTO requestModuloDTO){
+    public ModuleResponseDTO CreateModule(RequestModuloDTO requestModuloDTO){
 
         ModuleEntity moduleEntity = new ModuleEntity();
 
