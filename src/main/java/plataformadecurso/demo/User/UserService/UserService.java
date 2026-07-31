@@ -31,7 +31,7 @@ public class UserService {
         user.setEmail(dto.email());
         user.setPassword(passwordEncoder.encode(dto.password()));
 
-       // user.setRole(dto.role());
+        // user.setRole(dto.role());
         user.setPhone(dto.phone());
         user.setAddress(dto.address());
         user.setCity(dto.city());

@@ -1,10 +1,11 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.5'
+	id 'org.springframework.boot' version '3.2.5' // Ajustado para uma versão 3.x estável compatível com Java 21
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'plataformadecurso'
+// CORRIGIDO: Adicionado a letra "o" em plataformadecurso para bater com seus arquivos Java
+group = 'plataformadecurso.demo'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -18,8 +19,7 @@ repositories {
 }
 
 dependencies {
-
-	// Spring
+	// Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -35,13 +35,16 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
-	// Banco
+	// Banco de Dados
 	runtimeOnly 'com.h2database:h2'
 	// runtimeOnly 'org.postgresql:postgresql'
 
-	// Testes (Mockito e JUnit já estão inclusos aqui nativamente)
+	// Testes
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+
+	// EXIGIDO PELA DOCUMENTAÇÃO: Garante que o Gradle encontre as classes de teste JUnit 5
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {

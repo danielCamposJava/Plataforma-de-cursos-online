@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import plataformadecurso.demo.User.DTO.UserRequestDTO;
 import plataformadecurso.demo.User.DTO.UserResponseDTO;
 import plataformadecurso.demo.User.UserService.UserService;
+
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
 
-       private final UserService userService;
+       private UserService userService;
 
        @PostMapping
        public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO  userRequestDTO) {
