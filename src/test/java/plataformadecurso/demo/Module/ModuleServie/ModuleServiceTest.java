@@ -57,7 +57,7 @@ class ModuleServiceTest {
 
         assertNotNull(responseDTOs);
         assertEquals(1, responseDTOs.size());
-        assertEquals(  "Module 1", responseDTOs.get(0).title());
+        assertEquals(  "Module 1", responseDTOs.getFirst().title());
 
         verify(moduleRepository).findAll();
 
