@@ -3,19 +3,14 @@ package plataformadecurso.demo.Lessons.LessonsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.ResponseEntity;
 import plataformadecurso.demo.Lessons.DTO.LessonsRequestDTO;
 import plataformadecurso.demo.Lessons.DTO.LessonsResponseDTO;
 import plataformadecurso.demo.Lessons.EntityLessons.LessonsEntity;
 import plataformadecurso.demo.Lessons.LessonsRepository.LessonsRepository;
-import plataformadecurso.demo.Module.DTO.RequestModuloDTO;
-
 import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -106,5 +101,6 @@ class LessonsSericeTest {
         assertEquals("LessonsEntity not found", exception.getMessage());
 
         verify(lessonsRepository).deleteById(any(UUID.class));
+
     }
 }

@@ -55,7 +55,7 @@ public class EnrollmentsService{
 
     }
 
-    public ResponseEnrollmentsDTO  deleteEnrollments(UUID id) {
+    public void deleteEnrollments(UUID id) {
 
         if(!enrollmentsRepository.existsById(id)){
             throw new RuntimeException("Enrollments with id " + id + " not found");
@@ -63,7 +63,7 @@ public class EnrollmentsService{
 
         enrollmentsRepository.deleteById(id);
 
-        return ResponseEnrollmentsDTO.fromEntity(enrollmentsRepository.findById(id).get());
+        ResponseEnrollmentsDTO.fromEntity(enrollmentsRepository.findById(id).get());
 
     }
 
