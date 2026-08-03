@@ -1,7 +1,7 @@
 package plataformadecurso.demo.Enrollments.EnrollamentsService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Service;
 import plataformadecurso.demo.Enrollments.DTO.RequesEnrollmentsDTO;
 import plataformadecurso.demo.Enrollments.DTO.ResponseEnrollmentsDTO;
@@ -10,61 +10,63 @@ import plataformadecurso.demo.Enrollments.EnrollamentsRepository.EnrollmentsRepo
 import java.util.List;
 import java.util.UUID;
 
-@Component
 @Service
 @RequiredArgsConstructor
-public class EnrollmentsService{
+public class EnrollmentsService {
 
     private final EnrollmentsRepository enrollmentsRepository;
 
-    public  List<ResponseEnrollmentsDTO> listAllResponses() {
+    public List<ResponseEnrollmentsDTO> listAllResponses() {
 
-        return enrollmentsRepository.findAll().stream().map(
-                ResponseEnrollmentsDTO :: fromEntity
-        ).toList();
+        return enrollmentsRepository.findAll()
+                .stream()
+                .map(ResponseEnrollmentsDTO::fromEntity)
+                .toList();
     }
 
-    public ResponseEnrollmentsDTO  createEnrollments(ResponseEnrollmentsDTO enrollmentsDTO) {
+    public ResponseEnrollmentsDTO createEnrollments(RequesEnrollmentsDTO enrollmentsDTO) {
 
         EnrollmentEntity enrollmentEntity = new EnrollmentEntity();
-        enrollmentEntity.setCourse(enrollmentEntity.getCourse());
-        enrollmentEntity.setProgress(enrollmentEntity.getProgress());
-        enrollmentEntity.setEnrolledAt(enrollmentEntity.getEnrolledAt());
 
-        enrollmentsRepository.save(enrollmentEntity);
+        enrollmentEntity.setCourse(enrollmentsDTO.course());
+        enrollmentEntity.setProgress(Double.valueOf(enrollmentsDTO.progress()));
+        enrollmentEntity.setEnrolledAt(enrollmentsDTO.enrolledAt());
 
-        return ResponseEnrollmentsDTO.fromEntity(enrollmentEntity);
+        EnrollmentEntity savedEntity =
+                enrollmentsRepository.save(enrollmentEntity);
 
+        return ResponseEnrollmentsDTO.fromEntity(savedEntity);
     }
 
-    public ResponseEnrollmentsDTO  updateEnrollments(UUID id , RequesEnrollmentsDTO enrollmentsDTO) {
+    public ResponseEnrollmentsDTO updateEnrollments(
+            UUID id,
+            RequesEnrollmentsDTO enrollmentsDTO) {
 
-       enrollmentsRepository.findById(id).orElseThrow(
-               () ->  new RuntimeException("Enrollments with id " + id + " not found")
-       );
+        EnrollmentEntity enrollmentEntity =
+                enrollmentsRepository.findById(id)
+                        .orElseThrow(() ->
+                                new RuntimeException(
+                                        "Enrollment with id " + id + " not found"
+                                ));
 
-       EnrollmentEntity enrollmentEntity = enrollmentsRepository.findById(id).orElseThrow();
+        enrollmentEntity.setCourse(enrollmentsDTO.course());
+        enrollmentEntity.setProgress(Double.valueOf(enrollmentsDTO.progress()));
+        enrollmentEntity.setEnrolledAt(enrollmentsDTO.enrolledAt());
 
-       enrollmentEntity.setCourse(enrollmentEntity.getCourse());
-       enrollmentEntity.setProgress(enrollmentEntity.getProgress());
-       enrollmentEntity.setEnrolledAt(enrollmentEntity.getEnrolledAt());
+        EnrollmentEntity updatedEntity =
+                enrollmentsRepository.save(enrollmentEntity);
 
-       enrollmentsRepository.save(enrollmentEntity);
-
-       return ResponseEnrollmentsDTO.fromEntity(enrollmentEntity);
-
+        return ResponseEnrollmentsDTO.fromEntity(updatedEntity);
     }
 
     public void deleteEnrollments(UUID id) {
 
-        if(!enrollmentsRepository.existsById(id)){
-            throw new RuntimeException("Enrollments with id " + id + " not found");
+        if (!enrollmentsRepository.existsById(id)) {
+            throw new RuntimeException(
+                    "Enrollment with id " + id + " not found"
+            );
         }
 
         enrollmentsRepository.deleteById(id);
-
-        ResponseEnrollmentsDTO.fromEntity(enrollmentsRepository.findById(id).get());
-
     }
-
 }

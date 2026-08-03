@@ -36,5 +36,7 @@ public class EnrollmentEntity {
     private Double progress;
 
 
-
+    public void setCourse(String course) {
+        this.course = new CourseEntity();
+    }
 }

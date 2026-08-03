@@ -54,6 +54,7 @@ class LessonsSericeTest {
         assertEquals(1, lessonsEntity.getOrderIndex());
 
         verify(lessonsRepository).findAll();
+
     }
 
     @Test
@@ -68,7 +69,6 @@ class LessonsSericeTest {
         assertEquals(1,requestDTO.orderIndex());
 
         verify(lessonsRepository).save(any(LessonsEntity.class));
-
 
     }
 
