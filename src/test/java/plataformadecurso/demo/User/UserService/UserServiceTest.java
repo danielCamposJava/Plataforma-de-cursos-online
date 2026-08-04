@@ -10,11 +10,9 @@ import plataformadecurso.demo.User.DTO.UserRequestDTO;
 import plataformadecurso.demo.User.DTO.UserResponseDTO;
 import plataformadecurso.demo.User.UserEntity.UserEntity;
 import plataformadecurso.demo.User.UserRepository.UserRepository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -33,6 +31,7 @@ class UserServiceTest {
 
     @Test
     void shouldCreateUserSuccessfully() {
+
         UserRequestDTO dto = createDummyRequestDTO("daniel@email.com");
         UserEntity savedUser = createDummyUserEntity();
 
@@ -53,6 +52,7 @@ class UserServiceTest {
 
     @Test
     void shouldThrowExceptionWhenEmailAlreadyExistsOnCreate() {
+
         UserRequestDTO dto = createDummyRequestDTO("daniel@email.com");
 
         when(userRepository.existsByEmail(dto.email())).thenReturn(true);
@@ -64,10 +64,12 @@ class UserServiceTest {
 
         assertEquals("Email já cadastrado", exception.getMessage());
         verify(userRepository, never()).save(any(UserEntity.class));
+
     }
 
     @Test
     void shouldFindAllUsersSuccessfully() {
+
         UserEntity user1 = createDummyUserEntity();
         UserEntity user2 = createDummyUserEntity();
         user2.setEmail("outro@email.com");
@@ -80,10 +82,12 @@ class UserServiceTest {
         assertEquals(2, response.size());
 
         verify(userRepository).findAll();
+
     }
 
     @Test
     void shouldFindUserByIdSuccessfully() {
+
         UUID id = UUID.randomUUID();
 
         UserEntity user = createDummyUserEntity();
@@ -97,10 +101,12 @@ class UserServiceTest {
         assertEquals(id, response.id());
 
         verify(userRepository).findById(id);
+
     }
 
     @Test
     void shouldThrowExceptionWhenUserNotFoundById() {
+
         UUID id = UUID.randomUUID();
 
         when(userRepository.findById(id)).thenReturn(Optional.empty());
@@ -111,10 +117,12 @@ class UserServiceTest {
         );
 
         assertEquals("Usuário não encontrado", exception.getMessage());
+
     }
 
     @Test
     void shouldUpdateUserWithoutChangingEmailSuccessfully() {
+
         UUID id = UUID.randomUUID();
 
         UserEntity existingUser = createDummyUserEntity();
@@ -133,10 +141,12 @@ class UserServiceTest {
 
         verify(userRepository, never()).existsByEmail(anyString());
         verify(userRepository).save(existingUser);
+
     }
 
     @Test
     void shouldUpdateUserWithNewEmailSuccessfully() {
+
         UUID id = UUID.randomUUID();
 
         UserEntity existingUser = createDummyUserEntity();
@@ -156,10 +166,12 @@ class UserServiceTest {
 
         verify(userRepository).existsByEmail("novo@email.com");
         verify(userRepository).save(existingUser);
+
     }
 
     @Test
     void shouldThrowExceptionWhenUpdatingToExistingEmail() {
+
         UUID id = UUID.randomUUID();
 
         UserEntity existingUser = createDummyUserEntity();
@@ -179,10 +191,12 @@ class UserServiceTest {
         assertEquals("Email já cadastrado", exception.getMessage());
 
         verify(userRepository, never()).save(any(UserEntity.class));
+
     }
 
     @Test
     void shouldDeleteUserSuccessfully() {
+
         UUID id = UUID.randomUUID();
 
         UserEntity user = createDummyUserEntity();
@@ -196,10 +210,12 @@ class UserServiceTest {
 
         verify(userRepository).findById(id);
         verify(userRepository).delete(user);
+
     }
 
     @Test
     void shouldThrowExceptionWhenDeletingUserNotFound() {
+
         UUID id = UUID.randomUUID();
 
         when(userRepository.findById(id)).thenReturn(Optional.empty());
