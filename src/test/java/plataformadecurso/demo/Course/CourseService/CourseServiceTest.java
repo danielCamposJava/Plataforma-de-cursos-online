@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import plataformadecurso.demo.Course.CourseEntity.CourseEntity;
 import plataformadecurso.demo.Course.CourseRepository.CourseRepository;
@@ -17,7 +16,6 @@ import java.util.Optional;
 import java.util.UUID;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 
 @ExtendWith(SpringExtension.class)
 public class CourseServiceTest {
@@ -43,7 +41,6 @@ public class CourseServiceTest {
         courseEntity.setDescription("Course Description");
 
     }
-
 
     @Test
     public void shouldCreateCourse() {

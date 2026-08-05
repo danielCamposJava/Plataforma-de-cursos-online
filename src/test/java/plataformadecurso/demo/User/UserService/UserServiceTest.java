@@ -72,6 +72,7 @@ class UserServiceTest {
 
         UserEntity user1 = createDummyUserEntity();
         UserEntity user2 = createDummyUserEntity();
+
         user2.setEmail("outro@email.com");
 
         when(userRepository.findAll()).thenReturn(List.of(user1, user2));
